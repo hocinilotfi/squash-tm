@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  squash-tm-md:
+    image: mariadb:10.6
+    environment:
+      MARIADB_ROOT_PASSWORD: lotfi
+      MARIADB_USER: lotfi
+      MARIADB_PASSWORD: lotfi
+      MARIADB_DATABASE: lotfi
+    volumes:
+      - "/var/lib/mysql-db:/var/lib/mysql"
+
+  squash-tm:
+    image: squashtest/squash-tm
+    depends_on:
+      - squash-tm-md
+    environment:
+      SQTM_DB_TYPE: mariadb
+      SQTM_DB_USERNAME: lotfi
+      SQTM_DB_PASSWORD: lotfi
+      SQTM_DB_NAME: lotfi
+    ports:
+      - 8090:8080/tcp
+    links:
+      - squash-tm-md:mariadb
+    volumes:
+      - squash-tm-logs:/opt/squash-tm/logs
+      - squash-tm-plugins:/opt/squash-tm/plugins
+
+volumes:
+  squash-tm-logs:
+  squash-tm-plugins:

@@ -1,21 +1,20 @@
 # Squash-TM **docker-compose.yml** file 
 - Creer un fichier docker-compose.yml et le mettre dans un dossier Squash-tm
 - Dans ce dossier:
-
 ```sh
 docker compose up -d
 ```
-
-```yml
+```yaml
 version: '3.7'
+
 services:
   squash-tm-md:
     image: mariadb:10.6
     environment:
-      MARIADB_ROOT_PASSWORD: squash
-      MARIADB_USER: squash
-      MARIADB_PASSWORD: squash
-      MARIADB_DATABASE: squash
+      MARIADB_ROOT_PASSWORD: squash-root
+      MARIADB_USER: squash_user
+      MARIADB_PASSWORD: squash_password
+      MARIADB_DATABASE: squash_db
     ports:
       - "3308:3306"  # Port changé ici
     volumes:
@@ -27,9 +26,9 @@ services:
       - squash-tm-md
     environment:
       SQTM_DB_TYPE: mariadb
-      SQTM_DB_USERNAME: squash
-      SQTM_DB_PASSWORD: squash
-      SQTM_DB_NAME: squash
+      SQTM_DB_USERNAME: squash_user
+      SQTM_DB_PASSWORD: squash_password
+      SQTM_DB_NAME: squash_db
       SQTM_DB_HOST: squash-tm-md
       SQTM_DB_PORT: 3306  # Reste 3306 car on se connecte au port interne du conteneur
     ports:
@@ -42,8 +41,7 @@ volumes:
   squash-tm-logs:
   squash-tm-plugins:
 ```
-
 ## Cridentials pour entrer dans squash-tm
 - **Endpoint**: localhost:8090/squash
-- **Username**: squash
-- **Password**: squash
+- **Username**: admin
+- **Password**: admin

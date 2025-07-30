@@ -28,7 +28,9 @@ services:
       - "8090:8080"
     volumes:
       - squash-tm-logs:/opt/squash-tm/logs
-      # - ./start-plugins.cfg:/opt/squash-tm/conf/start-plugins.cfg
+      - ./wait-for-it.sh:/wait-for-it.sh
+    entrypoint: ["/wait-for-it.sh", "squash-tm-md:3306", "--", "/docker-entrypoint.sh"]
+    command: ["catalina.sh", "run"]
 
 volumes:
   mysql-data:

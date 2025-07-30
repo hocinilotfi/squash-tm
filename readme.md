@@ -1,5 +1,13 @@
-version: '3.7'
+# Squash-TM **docker-compose.yml** file 
+- Creer un fichier docker-compose.yml et le mettre dans un dossier Squash-tm
+- Dans ce dossier:
 
+```sh
+docker compose up -d
+```
+
+```yml
+version: '3.7'
 services:
   squash-tm-md:
     image: mariadb:10.6
@@ -33,3 +41,9 @@ services:
 volumes:
   squash-tm-logs:
   squash-tm-plugins:
+```
+
+## Cridentials pour entrer dans squash-tm
+- **Endpoint**: localhost:8090/squash
+- **Username**: squash
+- **Password**: squash
